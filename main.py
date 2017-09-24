@@ -35,6 +35,10 @@ page_template = """
                 color: #0f0;
                 text-align:right;
             }}
+            .errSpan {{
+                background-color: #f00;
+                color: #ff0;
+            }}
         </style>
     </head>
     <body>
@@ -44,7 +48,7 @@ page_template = """
                         <label for="rot">
                             Rotate By:
                         </label>
-                        <input type="text" name="rot"/><span class="ErrSpan">{rot_error}</span><br/>
+                        <input type="text" name="rot" value="{user_rot}"/><span class="errSpan">{rot_error}</span><br/>
                         <textarea name="text">{user_text}</textarea>
                         <input type="submit"/>
                 </form>
@@ -64,17 +68,21 @@ def index():
 @app.route("/", methods=['POST'])
 def encrypt():
     #TODO sanitize strings
-    #locText =   
-    #locRot = 
+    locText = ""  
+    locRot = 0
     locText = request.form['text']
+    strLocRot = request.form['rot']
+    strRotError = ""
+
     try:
-        locRot = int(request.form['rot'])
+        locRot = int(strLocRot)
     except:
-        return page_template.format(rot_error = "Invalid ROTation!",user_text=locRot)
-    
+        strRotError = "&larr;Invalid ROTation!"
+        return page_template.format(user_rot=strLocRot, rot_error = strRotError,user_text=locText)    
+
     strEncrypt = rotate_string( locText, locRot )
-    strRet = "<h1>" + strEncrypt + "</h1>"
-    return strRet
+    return page_template.format(user_rot=strLocRot, rot_error = strRotError,user_text=strEncrypt)
+
 
 if __name__ == "__main__":
     app.run()       #call run on Flask object instance app
