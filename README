@@ -4,7 +4,7 @@ I've included this readme to assist in Flask env setup on Debian machines
 
 Dependencies (install via aptitude):
 * `python-flask` [flask.pocoo.org]
-* `python-virtualenv`
+* `virtualenv`
 
 
 In lieu of using conda, we set up our virtual environment manually:
