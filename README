@@ -1,0 +1,22 @@
+# README
+
+I've included this readme to assist in Flask env setup on Debian machines
+
+Dependencies (install via aptitude):
+* `python-flask` [flask.pocoo.org]
+* `python-virtualenv`
+
+
+In lieu of using conda, we set up our virtual environment manually:
+
+`
+$ virtualenv --python=python3 --system-site-packages mm
+$ su
+# source mm/bin/activate mm
+# python main.py
+`
+
+The `virtualenv` command creates a virtual environment locally.
+the `--python=` argument specifies which python binary to use.
+the `--system-site-packages` argument pulls in local packages (i.e. python-flask)
+

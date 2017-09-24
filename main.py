@@ -34,7 +34,7 @@ page_template = """
                         <label for="rot">
                             Rotate By:
                         </label>
-                        <input type="text" name="rot"/>
+                        <input type="text" name="rot"/><br/>
                         <input type="textarea" name="text"/>
                         <input type="submit"/>
                 </form>
