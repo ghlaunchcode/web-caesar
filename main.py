@@ -13,27 +13,27 @@ page_template = """
     <head>
         <title>Web Caesar</title>
         <style>
-            body {
+            body {{
                 background-color: #000;
-            }
-            form {
+            }}
+            form {{
                 background-color: #ccc;
                 padding: 20px;
                 margin: 0 auto;
                 width: 540px;
                 font: 16px sans-serif;
                 border-radius: 10px;
-            }
-            textarea {
+            }}
+            textarea {{
                 margin: 10px 0;
                 width: 540px;
                 height: 120px;
-            }
-            footer {
+            }}
+            footer {{
                 font-size: 10px;
                 color: #0f0;
                 text-align:right;
-            }
+            }}
         </style>
     </head>
     <body>
@@ -43,7 +43,7 @@ page_template = """
                         <label for="rot">
                             Rotate By:
                         </label>
-                        <input type="text" name="rot"/><br/>
+                        <input type="text" name="rot"/><span class="ErrSpan">{rot_error}</span><br/>
                         <textarea name="text"></textarea>
                         <input type="submit"/>
                 </form>
@@ -58,7 +58,7 @@ page_template = """
 
 @app.route("/")
 def index():
-    return page_template
+    return page_template.format(rot_error ="")
 
 @app.route("/", methods=['POST'])
 def encrypt():
