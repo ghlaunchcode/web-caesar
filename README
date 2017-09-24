@@ -10,7 +10,7 @@ Dependencies (install via aptitude):
 In lieu of using conda, we set up our virtual environment manually:
 
 `
-$ virtualenv --python=python3 --system-site-packages mm
+$ virtualenv --python=python3 --system-site-packages __mega
 $ su
 # source mm/bin/activate mm
 # python main.py

@@ -1,7 +1,8 @@
 #main.py
 #2017, Geoffrey Hadler
 
-from flask import Flask
+from flask import Flask, request
+from caesar import rotate_string
 
 app = Flask(__name__)       #instantiate Flask
 app.config['DEBUG'] = True  #enable debugging
@@ -12,6 +13,9 @@ page_template = """
     <head>
         <title>Web Caesar</title>
         <style>
+            body {
+                background-color: #000;
+            }
             form {
                 background-color: #ccc;
                 padding: 20px;
@@ -25,6 +29,11 @@ page_template = """
                 width: 540px;
                 height: 120px;
             }
+            footer {
+                font-size: 10px;
+                color: #0f0;
+                text-align:right;
+            }
         </style>
     </head>
     <body>
@@ -35,7 +44,7 @@ page_template = """
                             Rotate By:
                         </label>
                         <input type="text" name="rot"/><br/>
-                        <input type="textarea" name="text"/>
+                        <textarea name="text"></textarea>
                         <input type="submit"/>
                 </form>
             </section>
@@ -51,4 +60,16 @@ page_template = """
 def index():
     return page_template
 
-app.run()
+@app.route("/", methods=['POST'])
+def encrypt():
+    #TODO
+    #locText =   
+    #locRot = 
+    locRot = 7
+    locText = "junk"
+    strEncrypt = rotate_string( locText, locRot )
+    strRet = "<h1>" + strEncrypt + "</h1>"
+    return strRet
+
+if __name__ == "__main__":
+    app.run()       #call run on Flask object instance app
