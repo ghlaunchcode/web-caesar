@@ -63,7 +63,7 @@ page_template = """
 
 @app.route("/")
 def index():
-    return page_template.format(rot_error ="", user_text="")
+    return page_template.format(user_rot="0",rot_error ="", user_text="")
 
 @app.route("/", methods=['POST'])
 def encrypt():
