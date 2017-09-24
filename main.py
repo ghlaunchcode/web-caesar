@@ -3,6 +3,7 @@
 
 from flask import Flask, request
 from caesar import rotate_string
+import cgi
 
 app = Flask(__name__)       #instantiate Flask
 app.config['DEBUG'] = True  #enable debugging
@@ -44,7 +45,7 @@ page_template = """
                             Rotate By:
                         </label>
                         <input type="text" name="rot"/><span class="ErrSpan">{rot_error}</span><br/>
-                        <textarea name="text"></textarea>
+                        <textarea name="text">{user_text}</textarea>
                         <input type="submit"/>
                 </form>
             </section>
@@ -62,11 +63,15 @@ def index():
 
 @app.route("/", methods=['POST'])
 def encrypt():
-    #TODO
+    #TODO sanitize strings
     #locText =   
     #locRot = 
-    locRot = 7
-    locText = "junk"
+    locText = request.form['text']
+    try:
+        locRot = int(request.form['rot'])
+    except:
+        return page_template.format(rot_error = "Invalid ROTation!",user_text=locRot)
+    
     strEncrypt = rotate_string( locText, locRot )
     strRet = "<h1>" + strEncrypt + "</h1>"
     return strRet
